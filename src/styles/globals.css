@@ -1,6 +1,167 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-dm-serif), ui-serif, Georgia, "Times New Roman",
+    serif;
+
+  /* Warm Noir palette */
+  --color-noir-950: #0a0a0b;
+  --color-noir-900: #111113;
+  --color-noir-850: #161618;
+  --color-noir-800: #1c1c1f;
+  --color-noir-700: #27272b;
+  --color-noir-600: #3a3a40;
+  --color-noir-500: #55555e;
+  --color-noir-400: #7c7c87;
+  --color-noir-300: #a3a3af;
+  --color-noir-200: #cdcdd4;
+  --color-noir-100: #e8e8ec;
+  --color-noir-50: #f5f5f7;
+
+  /* Honey accent */
+  --color-honey-500: #d4a853;
+  --color-honey-400: #e0bd6f;
+  --color-honey-300: #ebd49a;
+  --color-honey-200: #f3e5be;
+  --color-honey-600: #b8903a;
+  --color-honey-700: #8f6f2d;
+
+  /* Status colors */
+  --color-sage-500: #7a9e7e;
+  --color-rose-500: #c97878;
+  --color-sky-500: #6b9fc4;
+}
+
+/* Grain overlay */
+@layer base {
+  :root {
+    --color-noir-950: #f7f6f3;
+    --color-noir-900: #efede8;
+    --color-noir-850: #e7e4dd;
+    --color-noir-800: #ddd9d0;
+    --color-noir-700: #c6c1b4;
+    --color-noir-600: #aea79a;
+    --color-noir-500: #888173;
+    --color-noir-400: #6a6459;
+    --color-noir-300: #4e493f;
+    --color-noir-200: #373229;
+    --color-noir-100: #241f18;
+    --color-noir-50: #17120d;
+  }
+
+  .dark {
+    --color-noir-950: #0a0a0b;
+    --color-noir-900: #111113;
+    --color-noir-850: #161618;
+    --color-noir-800: #1c1c1f;
+    --color-noir-700: #27272b;
+    --color-noir-600: #3a3a40;
+    --color-noir-500: #55555e;
+    --color-noir-400: #7c7c87;
+    --color-noir-300: #a3a3af;
+    --color-noir-200: #cdcdd4;
+    --color-noir-100: #e8e8ec;
+    --color-noir-50: #f5f5f7;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-noir-950);
+    color: var(--color-noir-200);
+    isolation: isolate;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-noir-700);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-noir-600);
+  }
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out both;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.4s ease-out both;
+  }
 }
