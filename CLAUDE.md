@@ -38,5 +38,8 @@ pnpm db:studio        # Open Drizzle Studio GUI
 - **Path alias:** `~/` maps to `src/` (e.g., `import { db } from "~/server/db"`)
 - **ESM module:** Project uses `"type": "module"` in package.json
 - **Drizzle ESLint rules:** Deletes and updates must include WHERE clauses (enforced by `drizzle/enforce-delete-with-where` and `drizzle/enforce-update-with-where`)
-- **Unused variables:** Prefix with `_` to suppress warnings
-- **Database URL:** Configured via `DATABASE_URL` env var (see `.env.example`)
+- **Strict TypeScript:** All code is written in strict mode; no `any` or `@ts-ignore` allowed
+- **Prettier formatting:** Code must be formatted with Prettier; use `pnpm format:write` to auto-format
+- **ESLint:** Code must pass ESLint checks; use `pnpm lint` to check and `pnpm lint:fix` to auto-fix issues
+- **Next.js App Router:** Pages and layouts are defined in `src/app/` using the new App Router conventions (e.g., `page.tsx`, `layout.tsx`)
+- **Component structure:** React components are functional and should have no more than 300 lines; consider splitting into smaller components if they grow too large. This convention includes layout and page components.
